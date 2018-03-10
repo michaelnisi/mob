@@ -12,5 +12,5 @@
     stdlib,
     gun
   ]},
-  {mod, {mob_app, []}
+  {mod, {mob_app, []}}
 ]}.
