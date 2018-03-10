@@ -1,0 +1,16 @@
+{application, mob, [
+  {description, "Stress HTTP APIs"},
+  {vsn, "1.0.0"},
+  {id, "git"},
+  {modules, [
+    mob,
+    mob_app,
+    mob_sup
+  ]},
+  {applications, [
+    kernel,
+    stdlib,
+    gun
+  ]},
+  {mod, {mob_app, []}
+]}.
