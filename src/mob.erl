@@ -13,7 +13,6 @@ start() ->
   {ok, _} = application:ensure_all_started(gun),
   application:start(?MODULE).
 
-
 start(Host, Port) ->
   ok = application:set_env(mob, host, Host),
   ok = application:set_env(mob, port, Port),
