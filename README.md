@@ -15,7 +15,7 @@ stream(ConnPid) ->
 
 Concurrency = 5.
 
-mob:add(fun (C) -> stream(C) end, Concurrency).
+mob:add(fun (ConnPid) -> stream(ConnPid) end, Concurrency).
 ```
 
 ## License
