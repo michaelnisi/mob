@@ -8,7 +8,8 @@
 ]).
 
 -export([
-  go/1
+  start_child/1,
+  start_children/2
 ]).
 
 -define(NAME, ?MODULE).
@@ -34,5 +35,15 @@ child_spec({Host, Port}) -> #{
 init(Opts) ->
   {ok, {sup_flags(), [child_spec(Opts)]}}.
 
-go(F) ->
+start_child(F) ->
   supervisor:start_child(?NAME, [F]).
+
+start_children(_, 0, Children) ->
+  Children;
+start_children(F, J, Children) ->
+  Child = start_child(F),
+  start_children(F, J - 1, [Child|Children]).
+
+start_children(F, J) ->
+  start_children(F, J, []).
+
