@@ -1,21 +1,14 @@
 # mob - stress stateless web APIs
 
-**mob** is small Erlang application to stress test HTTP APIs.
+*mob* is small Erlang application to stress test HTTP APIs.
 
 ## Example
 
+With `random_gun_request/1`, given a pid of a [*gun*](https://github.com/ninenines/gun) connection process, issuing a random *gun* request and returning the identifier of the stream, this example would hit `"localhost"` on port `8000` on five *gun* connections.
+
 ```erlang
-mob:start().
-
-%% Issues a random request ConnPid, a Gun connection,
-%% returning the stream reference.
-stream(ConnPid) ->
-  Stream = random_stream(),
-  stream(Stream, GunConnection).
-
-Concurrency = 5.
-
-mob:add(fun (ConnPid) -> stream(ConnPid) end, Concurrency).
+mob:start("localhost", 8000).
+mob:add(fun random_gun_request/1, 5).
 ```
 
 ## License
