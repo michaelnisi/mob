@@ -31,7 +31,7 @@ mob:start(Host, Port) -> ok | {error, Reason}
 - `Host = string()`
 - `Port = integer() >= 1`
 
-##ä Adding Workers
+### Adding Workers
 
 ```erlang
 mob:add(StreamFun, Concurrency) -> [startchild_ret()]
