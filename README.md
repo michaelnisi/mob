@@ -11,6 +11,34 @@ mob:start("localhost", 8000).
 mob:add(fun random_gun_request/1, 5).
 ```
 
+## Types
+
+### ConnPid = pid()
+
+The pid of the Gun connection process.
+
+### StreamRef = reference()
+
+Identifier of the HTTP stream initiated by the owner process.
+
+## Exports
+
+### Starting Mob
+
+```erlang
+mob:start(Host, Port) -> ok | {error, Reason}
+```
+- `Host = string()`
+- `Port = integer() >= 1`
+
+##ä Adding Workers
+
+```erlang
+mob:add(StreamFun, Concurrency) -> [startchild_ret()]
+```
+- `StreamFun = fun(ConnPid) -> StreamRef`
+- `Concurrency = integer() >= 1`
+
 ## License
 
 [MIT License](https://raw.github.com/michaelnisi/mob/master/LICENSE)

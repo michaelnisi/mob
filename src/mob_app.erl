@@ -8,7 +8,7 @@
 
 start(_Type, _Args) ->
   Host = application:get_env(mob, host, "localhost"),
-  Port = application:get_env(mob, port, 8384),
+  Port = application:get_env(mob, port, 8000),
   mob_sup:start_link({Host, Port}).
 
 stop(_State) ->
