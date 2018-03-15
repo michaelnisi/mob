@@ -13,13 +13,17 @@ mob:add(fun random_gun_request/1, 5).
 
 ## Types
 
-### ConnPid = pid()
+### A Gun Connection
+
+`ConnPid = pid()` 
 
 The pid of the Gun connection process.
 
-### StreamRef = reference()
+### HTTP Response Stream
 
-Identifier of the HTTP stream initiated by the owner process.
+`StreamRef = reference()` 
+
+Identifier of a HTTP response stream for a request. *Gun* supports HTTP/1.1, HTTP/2 and Websocket.
 
 ## Exports
 
