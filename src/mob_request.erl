@@ -76,8 +76,13 @@ maybe_cancel(C, S) ->
 connecting(info, {gun_up, _, _}, State) ->
   request(State).
 
+next(State) ->
+  Time = rand:uniform(5000) + 1000,
+  timer:sleep(Time),
+  request(State).
+
 requesting(info, {gun_response, _, _, fin, _, _}, State) ->
-  {next_state, requesting, State};
+  next(State);
 requesting(info, {gun_response, C, S, nofin, _, _}, State) ->
   case maybe_cancel(C, S) of
     ok -> {stop, normal, State};
@@ -87,6 +92,4 @@ requesting(info, {gun_response, C, S, nofin, _, _}, State) ->
 receiving(info, {gun_data, _, _, nofin, _}, State) ->
   {next_state, receiving, State};
 receiving(info, {gun_data, _, _, fin, _}, State) ->
-  Time = rand:uniform(5000) + 1000,
-  timer:sleep(Time),
-  request(State).
+  next(State).
